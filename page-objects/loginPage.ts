@@ -1,5 +1,6 @@
 import { Page } from "@playwright/test";
 
+
 export class LoginPage {
   private readonly page: Page;
 
