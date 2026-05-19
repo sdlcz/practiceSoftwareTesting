@@ -14,7 +14,7 @@ test("Navigate to login page", async ({ page }) => {
   );
 });
 
-test("login method", async ({ page }) => {
+test("login success", async ({ page }) => {
   const navigateTo = new NavigationPage(page);
   const onLoginPage = new LoginPage(page);
 
@@ -24,4 +24,16 @@ test("login method", async ({ page }) => {
     "welcome01",
   );
   await expect(page.getByText("Jack Howe")).toBeVisible();
+});
+
+test("invalid login", async ({ page }) => {
+  const navigateTo = new NavigationPage(page);
+  const onLoginPage = new LoginPage(page);
+
+  await navigateTo.loginPage();
+  await onLoginPage.loginUsingDefaultAccountCredentials(
+    "test@test.com",
+    "welcome",
+  );
+  await expect(onLoginPage.invalidLoginAssertions()).toBeTruthy();
 });

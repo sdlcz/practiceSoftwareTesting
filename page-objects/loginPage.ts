@@ -13,4 +13,9 @@ export class LoginPage {
     await loginForm.locator("[data-test=password]").fill(password);
     await loginForm.locator("[data-test=login-submit]").click();
   }
+
+    async invalidLoginAssertions() {
+        const loginForm = this.page.locator('[data-test="login-form"]');
+      await loginForm.locator("[data-test=login-error]");
+  }
 }
