@@ -14,8 +14,13 @@ export class LoginPage {
     await loginForm.locator("[data-test=login-submit]").click();
   }
 
-    async invalidLoginAssertions() {
-        const loginForm = this.page.locator('[data-test="login-form"]');
-      await loginForm.locator("[data-test=login-error]");
+  async invalidLoginAssertions() {
+    const loginForm = this.page.locator('[data-test="login-form"]');
+    await loginForm.locator("[data-test=email-error]");
+    await loginForm
+      .locator("[data-test=email-error]")
+      .getByText("Email format is invalid");
+    await loginForm.locator("[data-test=password-error]");
+    await loginForm.locator("[data-test=login-error]");
   }
 }
