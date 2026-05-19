@@ -1,6 +1,4 @@
 import { test, expect } from "@playwright/test";
-import { NavigationPage } from "../page-objects/navigationPage";
-import { LoginPage } from "../page-objects/loginPage";
 import { PageManager } from "../page-objects/pageManager";
 
 test.beforeEach(async ({ page }) => {
