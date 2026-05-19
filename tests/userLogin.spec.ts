@@ -7,19 +7,21 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("Navigate to login page", async ({ page }) => {
-    const navigateTo = new NavigationPage(page);
-    await navigateTo.loginPage();
-    await expect(page).toHaveURL(
-        "https://practicesoftwaretesting.com/auth/login")
-    });
+  const navigateTo = new NavigationPage(page);
+  await navigateTo.loginPage();
+  await expect(page).toHaveURL(
+    "https://practicesoftwaretesting.com/auth/login",
+  );
+});
 
 test("login method", async ({ page }) => {
-    const navigateTo = new NavigationPage(page);
-    const onLoginPage = new LoginPage(page);
+  const navigateTo = new NavigationPage(page);
+  const onLoginPage = new LoginPage(page);
 
-    await navigateTo.loginPage();
-    await onLoginPage.loginUsingDefaultAccountCredentials("test@test.com", "welcome");
-  });
-
-
-
+  await navigateTo.loginPage();
+  await onLoginPage.loginUsingDefaultAccountCredentials(
+    "customer2@practicesoftwaretesting.com",
+    "welcome01",
+  );
+  await expect(page.getByText("Jack Howe")).toBeVisible();
+});
