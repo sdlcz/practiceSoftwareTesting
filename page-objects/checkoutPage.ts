@@ -10,4 +10,7 @@ export class CheckoutPage {
   async basketList() {
     await this.page.locator("[data-test=nav-cart]").click();
   }
+  totalAmount() {
+    return this.page.locator("[data-test=cart-total]");
+  }
 }

@@ -22,7 +22,14 @@ export class PageManager {
   navigateTo() {
     return this.navigationPage;
   }
+    onHomePage() {
+        return this.homePage;
+  }
   onLoginPage() {
     return this.loginPage;
   }
+    onCheckoutPage() {
+        return this.checkoutPage;
+  }
+
 }

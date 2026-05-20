@@ -7,12 +7,12 @@ export class HomePage {
     this.page = page;
   }
 
-  async productList() {
-    const productList = this.page.locator(
-      "[data-test=product-01KS01QGX433F0CFH51X0QHXA4]",
-    );
-    await productList.hover();
-    productList.click();
-    // await this.page.locator("[data-test=increase-quantity]").dblclick();
+  async selectProduct() {
+    const product = this.page.locator('[data-test="product-name"]', {
+      hasText: "Combination Pliers",
+    });
+    const addProductToCart = this.page.locator('[data-test="add-to-cart"]');
+    await product.click();
+    await addProductToCart.click();
   }
 }

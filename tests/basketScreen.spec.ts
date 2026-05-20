@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, chromium, expect } from "@playwright/test";
 import { HomePage } from "../page-objects/homePage";
 import { CheckoutPage } from "../page-objects/checkoutPage";
 import { PageManager } from "../page-objects/pageManager";
@@ -8,13 +8,20 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("Checkout page", () => {
-    test.beforeEach(async ({page}) => {
-        const onHomePage = new HomePage(page);
-        onHomePage.productList();
-    })
+  test.beforeEach(async ({ page }) => {
+    // const onHomePage = new HomePage(page);
+    const pageManager = new PageManager(page);
+    await pageManager.onHomePage().selectProduct();
+    await pageManager.onCheckoutPage().basketList();
+  });
 
-    test("Verify Basket", async ({ page }) => {
-        const onCheckoutPage = new CheckoutPage(page);
-        onCheckoutPage.basketList();
-    });
+  test("Verify Basket", async ({ page }) => {
+    const pageManager = new PageManager(page);
+    await expect(page).toHaveURL(
+      "https://practicesoftwaretesting.com/checkout",
+    );
+    await expect(pageManager.onCheckoutPage().totalAmount()).toHaveText(
+      "$14.15",
+    );
+  });
 });
