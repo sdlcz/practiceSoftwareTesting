@@ -1,6 +1,4 @@
-import { test, chromium, expect } from "@playwright/test";
-import { HomePage } from "../page-objects/homePage";
-import { CheckoutPage } from "../page-objects/checkoutPage";
+import { test, expect } from "@playwright/test";
 import { PageManager } from "../page-objects/pageManager";
 
 test.beforeEach(async ({ page }) => {
@@ -9,7 +7,6 @@ test.beforeEach(async ({ page }) => {
 
 test.describe("Checkout page", () => {
   test.beforeEach(async ({ page }) => {
-    // const onHomePage = new HomePage(page);
     const pageManager = new PageManager(page);
     await pageManager.onHomePage().selectProduct();
     await pageManager.onCheckoutPage().basketList();

@@ -6,7 +6,6 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("Navigate to login page", async ({ page }) => {
-  // const navigateTo = new NavigationPage(page);
   const pageManager = new PageManager(page);
   await pageManager.navigateTo().loginPage();
   await expect(page).toHaveURL(
@@ -15,8 +14,6 @@ test("Navigate to login page", async ({ page }) => {
 });
 
 test("login success", async ({ page }) => {
-  //   const navigateTo = new NavigationPage(page);
-  // const onLoginPage = new LoginPage(page);
   const pageManager = new PageManager(page);
 
   await pageManager.navigateTo().loginPage();
@@ -30,9 +27,6 @@ test("login success", async ({ page }) => {
 });
 
 test("invalid login", async ({ page }) => {
-  //   const navigateTo = new NavigationPage(page);
-  //   const onLoginPage = new LoginPage(page);
-
   const pageManager = new PageManager(page);
   await pageManager.navigateTo().loginPage();
   await pageManager

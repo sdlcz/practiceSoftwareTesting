@@ -22,14 +22,13 @@ export class PageManager {
   navigateTo() {
     return this.navigationPage;
   }
-    onHomePage() {
-        return this.homePage;
+  onHomePage() {
+    return this.homePage;
   }
   onLoginPage() {
     return this.loginPage;
   }
-    onCheckoutPage() {
-        return this.checkoutPage;
+  onCheckoutPage() {
+    return this.checkoutPage;
   }
-
 }
