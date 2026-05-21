@@ -8,6 +8,10 @@ export class LoginPage {
     this.page = page;
   }
 
+  async registerYourAccount() {
+    this.page.locator('[data-test="register-link"]').click();
+  }
+
   async loginUsingDefaultAccountCredentials(email: string, password: string) {
     const loginForm = this.page.locator('[data-test="login-form"]');
     await loginForm.locator("[data-test=email]").fill(email);

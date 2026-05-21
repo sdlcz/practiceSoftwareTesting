@@ -13,6 +13,17 @@ test("Navigate to login page", async ({ page }) => {
   );
 });
 
+test("Registration Page", async ({ page }) => {
+  const pageManager = new PageManager(page);
+  await pageManager.navigateTo().loginPage();
+
+  await pageManager.onLoginPage().registerYourAccount();
+  await expect(page).toHaveURL(
+    "https://practicesoftwaretesting.com/auth/register",
+  );
+  await expect(page.locator('h3')).toContainText("Customer registration");
+})
+
 test("login success", async ({ page }) => {
   const pageManager = new PageManager(page);
 
