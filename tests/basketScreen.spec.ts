@@ -6,19 +6,29 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("Checkout page", () => {
-  test.beforeEach(async ({ page }) => {
-    const pageManager = new PageManager(page);
-    await pageManager.onHomePage().selectProduct();
-    await pageManager.onCheckoutPage().basketList();
-  });
+  // test.beforeEach(async ({ page }) => {
+  //   const pageManager = new PageManager(page);
+  //   await pageManager.onHomePage().selectProduct();
+  //   await pageManager.onCheckoutPage().basketList();
+  // });
 
   test("Verify Basket", async ({ page }) => {
     const pageManager = new PageManager(page);
+    await pageManager.onHomePage().selectProduct();
+    await pageManager.onCheckoutPage().basketList();
+
     await expect(page).toHaveURL(
       "https://practicesoftwaretesting.com/checkout",
     );
+
+    const expected = await pageManager
+      .onCheckoutPage()
+      .calculateExpectedTotal();
     await expect(pageManager.onCheckoutPage().totalAmount()).toHaveText(
-      "$14.15",
+      new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(expected),
     );
   });
 });
