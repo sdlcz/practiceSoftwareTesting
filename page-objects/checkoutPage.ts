@@ -15,9 +15,7 @@ export class CheckoutPage {
   }
 
   async calculateExpectedTotal(): Promise<number> {
-    // Get the displayed total text (e.g., "$14.15")
     const totalText = await this.totalAmount().innerText();
-    // Parse and return as a number
     return this.parsePrice(totalText);
   }
 

@@ -7,12 +7,15 @@ export class HomePage {
     this.page = page;
   }
 
-  async selectProduct() {
+  async selectProduct(productName: string = "Combination Pliers", quantity: number = 1) {
     const product = this.page.locator('[data-test="product-name"]', {
-      hasText: "Combination Pliers",
+      hasText: productName,
     });
     const addProductToCart = this.page.locator('[data-test="add-to-cart"]');
     await product.click();
-    await addProductToCart.click();
+    for (let i = 0; i < quantity; i++){
+      await addProductToCart.click();
+      await this.page.waitForTimeout(300);
+    }
   }
 }
